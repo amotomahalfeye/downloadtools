@@ -1,0 +1,8 @@
+*/__pycache__/
+media/
+.idea/
+.packages/
+.venv/
+.vscode/
+dist/
+try*.py

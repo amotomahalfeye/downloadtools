@@ -1,0 +1,5 @@
+# CHANGELOG
+
+## [6.0.1] - 2025-02-02
+
+NO ENTRIES

@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "downloadtools"
+version = "6.0.1"
+description = "Package for downloading media from urls."
+authors = ["amotomahalfeye <amotomahalfeye@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tqdm = "^4.66.5"
+pydantic = "^2.9.2"
+httpx = "^0.28.1"
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+pytest-cov = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
