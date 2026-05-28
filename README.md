@@ -5,7 +5,7 @@ Package for downloading media from urls.
 ## Table of Contents
 
 <!-- TOC -->
-* [DownloadTools](#downloadtools)
+* [downloadtools](#downloadtools)
   * [Table of Contents](#table-of-contents)
     * [Documentation](#documentation)
       * [Available Attributes](#available-attributes)
@@ -131,10 +131,10 @@ import downloadtools
 
 class GalleyCheck(downloadtools.SpecialCaseUrl):
 
-  def check_url(self, url: str, filename: str | None, location: str | None) -> ...:
-    # this galley url map to a list of image urls
-    image_items = [...]
-    return image_items
+    def check_url(self, url: str, filename: str | None, location: str | None) -> ...:
+        # this galley url map to a list of image urls
+        image_items = [...]
+        return image_items
 ```
 
 #### Exceptions
