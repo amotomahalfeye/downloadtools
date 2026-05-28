@@ -12,14 +12,17 @@ from .states import ProcessState, ResultState
 
 
 class ThreadingHelper:
-    def __init__(self, items: list[DownloadToolsItem],
-                 location: Path,
-                 special_case_urls: list[SpecialCaseUrl] = None,
-                 head_check: bool = False,
-                 follow_redirects: bool = True,
-                 size_limit: int = float("inf"),
-                 file_overwrite: bool = False,
-                 disable_tqdm: bool = False) -> None:
+    def __init__(
+        self,
+        items: list[DownloadToolsItem],
+        location: Path,
+        special_case_urls: list[SpecialCaseUrl] = None,
+        head_check: bool = False,
+        follow_redirects: bool = True,
+        size_limit: int = float("inf"),
+        file_overwrite: bool = False,
+        disable_tqdm: bool = False,
+    ) -> None:
         self.location = location
         self.special_case_urls = special_case_urls
         self.head_check = head_check
@@ -32,8 +35,9 @@ class ThreadingHelper:
         self._output: list[tuple[DownloadToolsItem, str | Exception]] = []
         self._active_threads = 0
 
-    def store_output(self, result_state: ResultState, item: DownloadToolsItem,
-                     output: Exception | str | list[DownloadToolsItem]) -> None:
+    def store_output(
+        self, result_state: ResultState, item: DownloadToolsItem, output: Exception | str | list[DownloadToolsItem]
+    ) -> None:
         with self._lock:
             if result_state == ResultState.SUCCESS:
                 self._output.append((item, output))

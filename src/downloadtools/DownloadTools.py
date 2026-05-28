@@ -33,15 +33,17 @@ class DownloadTools:
     :param disable_tqdm: If True, the program will disable tqdm.
     """
 
-    def __init__(self,
-                 threads: int = 100,
-                 fresh_folder: bool = False,
-                 special_case_urls: list[SpecialCaseUrl] = None,
-                 head_check: bool = False,
-                 follow_redirects: bool = True,
-                 size_limit: int = float("inf"),
-                 file_overwrite: bool = False,
-                 disable_tqdm: bool = False) -> None:
+    def __init__(
+        self,
+        threads: int = 100,
+        fresh_folder: bool = False,
+        special_case_urls: list[SpecialCaseUrl] = None,
+        head_check: bool = False,
+        follow_redirects: bool = True,
+        size_limit: int = float("inf"),
+        file_overwrite: bool = False,
+        disable_tqdm: bool = False,
+    ) -> None:
         if special_case_urls is None:
             special_case_urls = []
         self.specialCaseUrls: list[SpecialCaseUrl] = special_case_urls
@@ -69,12 +71,12 @@ class DownloadTools:
 
     @staticmethod
     def _extract_filename_content_disposition(content_disposition: str) -> tuple[str, str] | tuple[None, None]:
-        temp = re.findall("filename=\"(.+)\"", content_disposition)
+        temp = re.findall('filename="(.+)"', content_disposition)
         if len(temp) == 0:
             return None, None
         filename = temp[0]
         filetype = filename.split(".")[-1]
-        filename = filename[:len(filename) - (len(filetype) + 1)]
+        filename = filename[: len(filename) - (len(filetype) + 1)]
         return filename, filetype
 
     @staticmethod
@@ -88,7 +90,7 @@ class DownloadTools:
         filetype = filename.split(".")[-1]
         if filetype == filename:
             return None, None
-        filename = filename[:len(filename) - (len(filetype) + 1)]
+        filename = filename[: len(filename) - (len(filetype) + 1)]
         return filename, filetype
 
     @staticmethod
@@ -96,20 +98,21 @@ class DownloadTools:
         filetype = user_filename.split(".")[-1]
         if filetype == user_filename:
             return user_filename, None
-        filename = user_filename[:len(user_filename) - (len(filetype) + 1)]
+        filename = user_filename[: len(user_filename) - (len(filetype) + 1)]
         return filename, filetype
 
     @staticmethod
     def _extract_filetype_content_type(content_type: str) -> str:
         semicolon_index = content_type.find(";")
         if semicolon_index == -1:
-            filetype = content_type[content_type.find("/") + 1:].strip()
+            filetype = content_type[content_type.find("/") + 1 :].strip()
         else:
-            filetype = content_type[content_type.find("/") + 1:content_type.find(";")].strip()
+            filetype = content_type[content_type.find("/") + 1 : content_type.find(";")].strip()
         return filetype
 
-    def _get_filename(self, url: str, user_filename: str = None, content_type: str = None,
-                      content_disposition: str = None) -> tuple[str, str]:
+    def _get_filename(
+        self, url: str, user_filename: str = None, content_type: str = None, content_disposition: str = None
+    ) -> tuple[str, str]:
         """
         1. user.filename and user.filetype
         2. user.filename and content_disposition.filetype
@@ -146,15 +149,15 @@ class DownloadTools:
     @staticmethod
     def _resolve_filename(filename: str, filetype: str, location: Path, file_overwrite: bool) -> str:
         if file_overwrite:
-            if (location / f'{filename}.{filetype}').exists() and (location / f'{filename}.{filetype}').is_dir():
-                shutil.rmtree(location / f'{filename}.{filetype}')
-            return f'{filename}.{filetype}'
+            if (location / f"{filename}.{filetype}").exists() and (location / f"{filename}.{filetype}").is_dir():
+                shutil.rmtree(location / f"{filename}.{filetype}")
+            return f"{filename}.{filetype}"
         temp_filename = filename
         i = 2
-        while (location / f'{temp_filename}.{filetype}').exists():
-            temp_filename = f'{filename} ({i})'
+        while (location / f"{temp_filename}.{filetype}").exists():
+            temp_filename = f"{filename} ({i})"
             i += 1
-        return f'{temp_filename}.{filetype}'
+        return f"{temp_filename}.{filetype}"
 
     @staticmethod
     def _check_media(content_type: str | None) -> None:
@@ -228,17 +231,19 @@ class DownloadTools:
                 logging.error(f"DownloadTools | error {thread_no} | {error} while processing {url}")
                 helper.store_output(ResultState.FAILED, item, error)
 
-    def download_media(self, items: list[DownloadToolsItem],
-                       location: str = ".",
-                       threads: Optional[int] = None,
-                       fresh_folder: Optional[bool] = None,
-                       special_case_urls: Optional[list[SpecialCaseUrl]] = None,
-                       head_check: Optional[bool] = None,
-                       follow_redirects: Optional[bool] = None,
-                       size_limit: Optional[int] = None,
-                       file_overwrite: Optional[bool] = None,
-                       disable_tqdm: Optional[bool] = None) \
-            -> list[tuple[DownloadToolsItem, str | Exception]]:
+    def download_media(
+        self,
+        items: list[DownloadToolsItem],
+        location: str = ".",
+        threads: Optional[int] = None,
+        fresh_folder: Optional[bool] = None,
+        special_case_urls: Optional[list[SpecialCaseUrl]] = None,
+        head_check: Optional[bool] = None,
+        follow_redirects: Optional[bool] = None,
+        size_limit: Optional[int] = None,
+        file_overwrite: Optional[bool] = None,
+        disable_tqdm: Optional[bool] = None,
+    ) -> list[tuple[DownloadToolsItem, str | Exception]]:
         """
         Download media from the internet.
 
@@ -273,8 +278,9 @@ class DownloadTools:
             disable_tqdm = self.disable_tqdm
         path_obj = Path(location)
         self._resolve_folder(path_obj, fresh_folder)
-        helper = ThreadingHelper(items, path_obj, special_case_urls, head_check, follow_redirects, size_limit,
-                                 file_overwrite, disable_tqdm)
+        helper = ThreadingHelper(
+            items, path_obj, special_case_urls, head_check, follow_redirects, size_limit, file_overwrite, disable_tqdm
+        )
         tasks: list[Thread] = []
         for i in range(threads):
             tasks.append(Thread(target=functools.partial(self._download_media_thread, helper, i)))
