@@ -1,7 +1,25 @@
 import os
+import pathlib
 import shutil
 
 import downloadtools
+
+urls = [
+    "https://picsum.photos/200/200.jpg",
+    "https://picsum.photos/300/300.jpg",
+    "https://picsum.photos/300/400.jpg",
+    "https://picsum.photos/500/500.jpg",
+    "https://picsum.photos/600/600.jpg",
+]
+
+
+def cleanup():
+    location = pathlib.Path(".media")
+    if location.exists():
+        if location.is_dir():
+            shutil.rmtree(location)
+        else:
+            location.unlink()
 
 
 def test_basic() -> None:
@@ -13,15 +31,11 @@ def test_basic() -> None:
     - media folder is created
     - 5 files in media folder
     """
+    cleanup()
     try:
         shutil.rmtree(".media")
     except FileNotFoundError:
         pass
-
-    urls = []
-    with open('urls.txt') as f:
-        for line in f:
-            urls.append(line.strip())
 
     items = []
     for i, url in enumerate(urls):
@@ -36,16 +50,4 @@ def test_basic() -> None:
     assert os.path.exists(".media/3.jpg")
     assert os.path.exists(".media/4.jpg")
     assert os.path.exists(".media/5.jpg")
-
-
-def test_file_name_space() -> None:
-    urls = []
-    with open('urls.txt') as f:
-        i = 1
-        for line in f:
-            urls.append((line.strip(), f'{i}.jpg '))
-            i += 1
-
-    obj = downloadtools.DownloadTools()
-    result = obj.download_media(downloadtools.make_items(urls[:10]), location=".media", fresh_folder=True)
-    print(result)
+    cleanup()

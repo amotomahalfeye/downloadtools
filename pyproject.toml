@@ -1,24 +1,32 @@
-[tool.poetry]
+[project]
 name = "downloadtools"
-version = "6.0.1"
-description = "Package for downloading media from urls."
-authors = ["amotomahalfeye <amotomahalfeye@protonmail.com>"]
+version = "7.0.0"
+description = "Framework for downloading media from urls."
+authors = [{ name = "Amotoma Halfeye", email = "amotomahalfeye@protonmail.com" }]
+requires-python = ">=3.14"
 readme = "README.md"
+dependencies = [
+    "tqdm>=4.67.3",
+    "pydantic>=2.13.4",
+    "httpx>=0.28.1",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-tqdm = "^4.66.5"
-pydantic = "^2.9.2"
-httpx = "^0.28.1"
-
-[[tool.poetry.source]]
-name = "PyPI"
-priority = "primary"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.3"
-pytest-cov = "^6.0.0"
+[dependency-groups]
+dev = [
+    "ruff>=0.15.14",
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+upgrade = true
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true

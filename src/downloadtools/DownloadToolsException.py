@@ -11,7 +11,7 @@ class NotMedia(DownloadToolsException):
         self.content_type = content_type
 
     def __str__(self) -> str:
-        return f'Content-Type {self.content_type} not media'
+        return f"Content-Type {self.content_type} not media"
 
 
 class FileNameNone(DownloadToolsException):
@@ -29,4 +29,4 @@ class ExceedsContentSize(DownloadToolsException):
         self.content_length = content_length
 
     def __str__(self) -> str:
-        return f'content size {self.content_length} exceeds size limit {self.size_limit}'
+        return f"content size {self.content_length} exceeds size limit {self.size_limit}"

@@ -5,7 +5,7 @@ from downloadtools import DownloadTools
 
 
 def cleanup():
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
     if location.exists():
         if location.is_dir():
             shutil.rmtree(location)
@@ -27,14 +27,14 @@ def test_resolve_folder_1():
     # Delete folder/file `media` if exists
     cleanup()
 
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
 
     # Create folder `media`
     location.mkdir()
 
     # Create file `file.txt` in folder `media`
-    with open(location / "file.txt", 'w') as f:
-        f.write('Hello, World!')
+    with open(location / "file.txt", "w") as f:
+        f.write("Hello, World!")
 
     # Resolve folder `media`
     DownloadTools()._resolve_folder(location, fresh_folder=False)
@@ -42,8 +42,8 @@ def test_resolve_folder_1():
     # Check if the folder is the same
     assert location.is_dir()
     assert (location / "file.txt").is_file()
-    with open(location / "file.txt", 'r') as f:
-        assert f.read() == 'Hello, World!'
+    with open(location / "file.txt", "r") as f:
+        assert f.read() == "Hello, World!"
 
     # Clean up
     cleanup()
@@ -63,14 +63,14 @@ def test_resolve_folder_2():
     # Delete folder/file `media` if exists
     cleanup()
 
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
 
     # Create folder `media`
     location.mkdir()
 
     # Create file `file.txt` in folder `media`
-    with open(location / "file.txt", 'w') as f:
-        f.write('Hello, World!')
+    with open(location / "file.txt", "w") as f:
+        f.write("Hello, World!")
 
     # Resolve folder `media`
     DownloadTools()._resolve_folder(location, fresh_folder=True)
@@ -96,7 +96,7 @@ def test_resolve_folder_3():
     # Delete folder/file `media` if exists
     cleanup()
 
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
 
     # Resolve folder `media`
     DownloadTools()._resolve_folder(location, fresh_folder=False)
@@ -121,7 +121,7 @@ def test_resolve_folder_4():
     # Delete folder/file `media` if exists
     cleanup()
 
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
 
     # Resolve folder `media`
     DownloadTools()._resolve_folder(location, fresh_folder=True)
@@ -146,11 +146,11 @@ def test_resolve_folder_5():
     # Delete folder/file `media` if exists
     cleanup()
 
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
 
     # Create file `media`
-    with open(location, 'w') as f:
-        f.write('Hello, World!')
+    with open(location, "w") as f:
+        f.write("Hello, World!")
 
     # Resolve folder `media`
     try:
@@ -158,7 +158,7 @@ def test_resolve_folder_5():
     except NotADirectoryError:
         pass
     else:
-        assert False, 'NotADirectoryError not raised'
+        assert False, "NotADirectoryError not raised"
 
     # Clean up
     cleanup()
@@ -177,11 +177,11 @@ def test_resolve_folder_6():
     # Delete folder/file `media` if exists
     cleanup()
 
-    location = pathlib.Path('media')
+    location = pathlib.Path("media")
 
     # Create file `media`
-    with open(location, 'w') as f:
-        f.write('Hello, World!')
+    with open(location, "w") as f:
+        f.write("Hello, World!")
 
     # Resolve folder `media`
     DownloadTools()._resolve_folder(location, fresh_folder=True)

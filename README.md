@@ -1,11 +1,11 @@
-# DownloadTools
+# downloadtools
 
 Package for downloading media from urls.
 
 ## Table of Contents
 
 <!-- TOC -->
-* [DownloadTools](#downloadtools)
+* [downloadtools](#downloadtools)
   * [Table of Contents](#table-of-contents)
     * [Documentation](#documentation)
       * [Available Attributes](#available-attributes)

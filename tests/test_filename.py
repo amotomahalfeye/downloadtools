@@ -5,7 +5,7 @@ from downloadtools import DownloadTools, FileNameNone
 
 
 def test_filename_content_disposition():
-    content_disposition = "attachment; filename=\"test_filename_content_disposition.jpg\""
+    content_disposition = 'attachment; filename="test_filename_content_disposition.jpg"'
 
     filename = DownloadTools()._extract_filename_content_disposition(content_disposition)
     assert filename == ("test_filename_content_disposition", "jpg")
@@ -82,7 +82,7 @@ def test_filetype_from_content_type():
 
 
 def test_filetype_from_content_type_video():
-    content_type = "video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\""
+    content_type = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
 
     filetype = DownloadTools()._extract_filetype_content_type(content_type)
     assert filetype == "mp4"
@@ -100,11 +100,10 @@ def test_get_filename_1():
 def test_get_filename_2():
     user_filename = "test_get_filename_2"
 
-    content_disposition = "attachment; filename=\"test_get_filename_2.jpeg\""
+    content_disposition = 'attachment; filename="test_get_filename_2.jpeg"'
     url = "https://www.example.com/test_get_filename_2.jpg"
 
-    filename = DownloadTools()._get_filename(url, content_disposition=content_disposition,
-                                             user_filename=user_filename)
+    filename = DownloadTools()._get_filename(url, content_disposition=content_disposition, user_filename=user_filename)
     assert filename == ("test_get_filename_2", "jpeg")
 
 
@@ -128,7 +127,7 @@ def test_get_filename_4():
 
 
 def test_get_filename_5():
-    content_disposition = "attachment; filename=\"test_get_filename_5.jpg\""
+    content_disposition = 'attachment; filename="test_get_filename_5.jpg"'
     url = "https://www.example.com/"
 
     filename = DownloadTools()._get_filename(url, content_disposition=content_disposition)
