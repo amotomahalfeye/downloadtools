@@ -1,7 +1,7 @@
 import pathlib
 import shutil
 
-from src.downloadtools import DownloadTools
+from downloadtools import DownloadTools
 
 
 def cleanup():

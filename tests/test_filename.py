@@ -1,7 +1,7 @@
 import pathlib
 import shutil
 
-from src.downloadtools import DownloadTools, FileNameNone
+from downloadtools import DownloadTools, FileNameNone
 
 
 def test_filename_content_disposition():

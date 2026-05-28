@@ -30,7 +30,7 @@ Package for downloading media from urls.
 
 ```python
 
-from src import downloadtools
+import downloadtools
 
 # basic usage
 download_tools = downloadtools.DownloadTools()
@@ -42,7 +42,7 @@ This is a list of `SpecialCaseUrl` objects. These objects are used to check if t
 
 ```python
 
-from src import downloadtools
+import downloadtools
 
 download_tools = downloadtools.DownloadTools(special_case_urls=[...])
 ```
@@ -54,7 +54,7 @@ type or size, then it does not send the full request.
 
 ```python
 
-from src import downloadtools
+import downloadtools
 
 download_tools = downloadtools.DownloadTools(head_check=True)
 ```
@@ -88,7 +88,7 @@ If True, tqdm progress bar will not be shown.
 
 ```python
 
-from src import downloadtools
+import downloadtools
 
 downloadToolsItems = [...]
 
@@ -131,7 +131,7 @@ this class to stop processing of an url.
 
 ```python
 
-from src import downloadtools
+import downloadtools
 
 
 class GalleyCheck(downloadtools.SpecialCaseUrl):

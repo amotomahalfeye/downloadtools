@@ -1,4 +1,4 @@
-from src.downloadtools import DownloadTools, NotMedia, ExceedsContentSize
+from downloadtools import DownloadTools, NotMedia, ExceedsContentSize
 
 
 def test_filetype_from_content_type_video():

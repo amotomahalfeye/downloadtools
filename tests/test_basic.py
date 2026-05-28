@@ -2,7 +2,7 @@ import os
 import pathlib
 import shutil
 
-from src import downloadtools
+import downloadtools
 
 urls = [
     "https://picsum.photos/200/200.jpg",
