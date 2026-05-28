@@ -29,7 +29,6 @@ Package for downloading media from urls.
 #### Available Attributes
 
 ```python
-
 import downloadtools
 
 # basic usage
@@ -41,7 +40,6 @@ download_tools = downloadtools.DownloadTools()
 This is a list of `SpecialCaseUrl` objects. These objects are used to check if the url is a special case or not.
 
 ```python
-
 import downloadtools
 
 download_tools = downloadtools.DownloadTools(special_case_urls=[...])
@@ -53,7 +51,6 @@ This is used to send a HEADER request to verify the media type and size of the f
 type or size, then it does not send the full request.
 
 ```python
-
 import downloadtools
 
 download_tools = downloadtools.DownloadTools(head_check=True)
@@ -87,7 +84,6 @@ If True, tqdm progress bar will not be shown.
 #### Downloading Method
 
 ```python
-
 import downloadtools
 
 downloadToolsItems = [...]
@@ -130,7 +126,6 @@ individual image urls, change the initially given filename, or change the locati
 this class to stop processing of an url.
 
 ```python
-
 import downloadtools
 
 
