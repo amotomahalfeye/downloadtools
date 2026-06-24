@@ -15,5 +15,11 @@
   "prHourlyLimit": 0,
   "lockFileMaintenance": {
     "enabled": true
-  }
+  },
+  "hostRules": [
+    {
+      "matchHost": "github.com",
+      "concurrentRequestLimit": 2
+    }
+  ]
 }
