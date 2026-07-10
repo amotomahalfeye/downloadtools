@@ -1,9 +1,9 @@
 [project]
 name = "downloadtools"
-version = "7.0.0"
+version = "7.1.0"
 description = "Framework for downloading media from urls."
 authors = [{ name = "Amotoma Halfeye", email = "amotomahalfeye@protonmail.com" }]
-requires-python = ">=3.14"
+requires-python = ">=3.10"
 readme = "README.md"
 dependencies = [
     "tqdm>=4.67.3",
@@ -30,3 +30,6 @@ line-length = 120
 
 [tool.ruff.format]
 skip-magic-trailing-comma = true
+
+[tool.hatch.build.targets.sdist]
+only-packages = true
